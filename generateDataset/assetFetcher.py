@@ -1,14 +1,16 @@
 import json
 from .csvWriter import CsvWriter
-from .assetFetcher import AssetFetcher
+from .assetDownloader import AssetDownloader
+from .assetAugmentor import AssetAugmentor
 
-csvWriter = CsvWriter()
-assetFetcher = AssetFetcher()
 
 class AssetFetcher:
 
+    csvWriter = CsvWriter()
+    assetDownloader = AssetDownloader()
+
     def Fetch(self):
-        csvWriter.ResetCSVFile()
+        self.csvWriter.ResetCSVFile()
         with open("./default-cards.json", encoding="utf8") as file:
             reader = json.load(file)
             i = 0;
@@ -17,7 +19,7 @@ class AssetFetcher:
                     print(card["name"], card["image_uris"]["normal"])
                     url = card["image_uris"].get("normal")
                     # Download image
-                    self.assetFetcher.DownloadImage(url)
+                    self.assetDownloader.DownloadImage(url)
 
                     # Store useful data, including image name in a csv file for later use
                     self.csvWriter.WriteCSVRecord(card)
@@ -26,8 +28,8 @@ class AssetFetcher:
                     i += 1
                     if(i >= 10):
                         break
-
-                
+        assetAugmentor = AssetAugmentor()
+        assetAugmentor.Augment(100)
 
 
 
