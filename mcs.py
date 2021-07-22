@@ -16,5 +16,11 @@ if command == "fetch":
 
 if command == "train":
     print("Not implemented yet")
-    
 
+if command == "help":
+    print("""
+        Options:
+            - fetch: Fetch a fresh set of card images from the server and run them through the augmentor
+            - train: Use the current data set to generate a fresh model
+    """)
+    
