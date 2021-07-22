@@ -3,3 +3,4 @@ input
 *.pyc
 card-values.csv
 default-cards.json
+generateDataset/__pycache__/
