@@ -1,17 +1,19 @@
 import Augmentor
-
+import os
 class AssetAugmentor:
 
-
+    originalsBaseDir = "E:/magic-images/originals"
+    augmentedBaseDir = "E:/magic-images/augmented"
     # Generate and save X new images to the output directory.
     def Augment(self, sampleSize):
-        p = self.buildPipeline()
-        p.sample(sampleSize)
+        for dir in os.listdir(self.originalsBaseDir):
+            p = self.buildPipeline(dir)
+            p.sample(sampleSize)
 
-    def buildPipeline(self):
+    def buildPipeline(self, dir):
         p = Augmentor.Pipeline(
-            source_directory="E:/magic-images/originals",
-            output_directory="E:/magic-images/augmented")
+            source_directory= self.originalsBaseDir + "/" + dir,
+            output_directory= self.augmentedBaseDir + "/" + dir)
 
         # Manipulate the example card.
         p.rotate_without_crop(

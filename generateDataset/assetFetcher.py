@@ -10,7 +10,7 @@ class AssetFetcher:
 
     csvWriter = CsvWriter()
     sanityCheck = True
-    sanityBreakpoint = 1000
+    sanityBreakpoint = 10
     augmentCount = 100
 
     baseUrl = "E:/magic-images/originals/"
@@ -31,12 +31,13 @@ class AssetFetcher:
                     # Store useful data, including image name in a csv file for later use
                     self.csvWriter.WriteCSVRecord(card)
                     
-                    # Temporary sanity check to work with a smaller dataset
+                    # Sanity check to work with a smaller dataset
                     i += 1
                     if(i >= self.sanityBreakpoint and self.sanityCheck):
                         break
+                    
         assetAugmentor = AssetAugmentor()
-        #assetAugmentor.Augment(self.augmentCount)
+        assetAugmentor.Augment(self.augmentCount)
 
     def DownloadImage(self, url, name):
         img_data = requests.get(url).content
