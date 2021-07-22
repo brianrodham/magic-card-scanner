@@ -1,2 +1,5 @@
 output
 input
+*.pyc
+card-values.csv
+default-cards.json
