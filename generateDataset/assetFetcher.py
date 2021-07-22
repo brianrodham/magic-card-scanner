@@ -7,6 +7,9 @@ import requests
 class AssetFetcher:
 
     csvWriter = CsvWriter()
+    sanityCheck = True
+    sanityBreakpoint = 10
+    augmentCount = 100
 
     def Fetch(self):
         self.csvWriter.ResetCSVFile()
@@ -15,7 +18,7 @@ class AssetFetcher:
             i = 0;
             for card in reader:
                 if("image_uris" in card):
-                    print(card["name"], card["image_uris"]["normal"])
+                   # print(card["name"], card["image_uris"]["normal"])
                     url = card["image_uris"].get("normal")
                     # Download image
                     self.DownloadImage(url)
@@ -25,10 +28,10 @@ class AssetFetcher:
                     
                     # Temporary sanity check to work with a smaller dataset
                     i += 1
-                    if(i >= 10):
+                    if(i >= self.sanityBreakpoint and self.sanityCheck):
                         break
         assetAugmentor = AssetAugmentor()
-        assetAugmentor.Augment(100)
+        assetAugmentor.Augment(self.augmentCount)
 
     def DownloadImage(self, url):
         img_data = requests.get(url).content
