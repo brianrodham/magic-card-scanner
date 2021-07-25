@@ -32,7 +32,7 @@ class AssetFetcher:
                     
                     # Sanity check to work with a smaller dataset
                     i += 1
-                    if(i >= self.sanityBreakpoint and self.sanityCheck):
+                    if(i > self.sanityBreakpoint and self.sanityCheck):
                         break
 
         assetAugmentor = AssetAugmentor()
