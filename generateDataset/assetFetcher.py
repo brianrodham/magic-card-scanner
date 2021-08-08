@@ -9,8 +9,8 @@ import urllib
 class AssetFetcher:
 
     csvWriter = CsvWriter()
-    sanityCheck = True
-    sanityBreakpoint = 10
+    sanityCheck = False
+    sanityBreakpoint = 100
 
     baseUrl = "E:/magic-images/originals/"
 

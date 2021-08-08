@@ -5,7 +5,7 @@ class AssetAugmentor:
     originalsBaseDir = "E:/magic-images/originals"
     augmentedBaseDir = "E:/magic-images/augmented"
 
-    augmentCount = 100
+    augmentCount = 500
 
 
     # Generate and save X new images to the output directory.
